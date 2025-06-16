@@ -54,12 +54,12 @@ class MCPClient {
     async getLatestBlock(): Promise<string> {
         try {
             const result = await this.mcp.callTool({
-                name: "getrpcblocklatest",
+                name: "rpc_latest_block",
                 arguments: {},
             });
             return result.content as string;
         } catch (err) {
-            console.error("Error calling getrpcblocklatest:", err);
+            console.error("Error calling rpc_latest_block:", err);
             return "Failed to fetch block.";
         }
     }
