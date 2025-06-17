@@ -107,8 +107,7 @@ async function main() {
         }
     }
 
-    const serverUrl = `${MAESTRO_MCP_SERVER}?api-key=${MAESTRO_API_KEY}`;
-    console.log(`Connecting to MCP server at ${serverUrl}...`);
+    const serverUrl = MAESTRO_MCP_SERVER;
     const client = new MCPClient();
     await client.connect(serverUrl);
     await client.chatLoop();
