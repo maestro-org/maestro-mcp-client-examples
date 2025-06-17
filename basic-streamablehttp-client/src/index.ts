@@ -55,7 +55,9 @@ class MCPClient {
         try {
             const result = await this.mcp.callTool({
                 name: "rpc_latest_block",
-                arguments: {},
+                arguments: {
+                    "api-key": MAESTRO_API_KEY,
+                },
             });
             return result.content as string;
         } catch (err) {
@@ -70,13 +72,15 @@ class MCPClient {
             output: process.stdout,
         });
 
-        console.log("Type 'block' to fetch latest block or 'quit' to exit.");
+        console.log(
+            "Type 'latest block' to fetch latest block or 'quit' to exit."
+        );
 
         while (true) {
             const input = await rl.question("\n> ");
             if (input.toLowerCase() === "quit") break;
 
-            if (input.toLowerCase() === "block") {
+            if (input.toLowerCase() === "latest block") {
                 const output = await this.getLatestBlock();
                 console.log("\nLatest block:\n", output);
             } else {
@@ -103,7 +107,8 @@ async function main() {
         }
     }
 
-    const serverUrl = MAESTRO_MCP_SERVER;
+    const serverUrl = `${MAESTRO_MCP_SERVER}?api-key=${MAESTRO_API_KEY}`;
+    console.log(`Connecting to MCP server at ${serverUrl}...`);
     const client = new MCPClient();
     await client.connect(serverUrl);
     await client.chatLoop();
