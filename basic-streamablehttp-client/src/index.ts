@@ -82,13 +82,47 @@ class MCPClient {
         }
     }
 
+    async listServerFunctions(): Promise<string> {
+        try {
+            // Most MCP SDKs provide a listTools or similar method
+            const tools = await this.mcp.listTools();
+            if (Array.isArray(tools)) {
+                return tools
+                    .map(
+                        (tool: any) =>
+                            `- ${tool.name}${
+                                tool.description ? ": " + tool.description : ""
+                            }`
+                    )
+                    .join("\n");
+            } else if (tools && tools.tools) {
+                // Some SDKs return { tools: [...] }
+                return tools.tools
+                    .map(
+                        (tool: any) =>
+                            `- ${tool.name}${
+                                tool.description ? ": " + tool.description : ""
+                            }`
+                    )
+                    .join("\n");
+            } else {
+                return JSON.stringify(tools, null, 2);
+            }
+        } catch (err) {
+            console.error("Error listing server functions:", err);
+            return "Failed to list server functions.";
+        }
+    }
+
     async chatLoop() {
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
         });
 
-        console.log("Type 'latest block' or  'block 840000'.");
+        console.log(
+            "Type 'latest block', 'block <height_or_hash>', 'list functions', or 'quit'."
+        );
 
         while (true) {
             const input = await rl.question("\n> ");
@@ -105,8 +139,13 @@ class MCPClient {
                 }
                 const output = await this.getBlockInfo(heightOrHash);
                 console.log("\nBlock info:\n", output);
+            } else if (input.toLowerCase() === "list functions") {
+                const functions = await this.listServerFunctions();
+                console.log("\nAvailable server functions:\n" + functions);
             } else {
-                console.log("Unrecognized command. Try 'block' or 'quit'.");
+                console.log(
+                    "Unrecognized command. Try 'block', 'latest block', 'list functions', or 'quit'."
+                );
             }
         }
 
