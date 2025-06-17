@@ -66,15 +66,29 @@ class MCPClient {
         }
     }
 
+    async getBlockInfo(height_or_hash: string): Promise<string> {
+        try {
+            const result = await this.mcp.callTool({
+                name: "rpc_block_info",
+                arguments: {
+                    "api-key": MAESTRO_API_KEY,
+                    height_or_hash: height_or_hash,
+                },
+            });
+            return result.content as string;
+        } catch (err) {
+            console.error("Error calling rpc_block_info:", err);
+            return "Failed to fetch block.";
+        }
+    }
+
     async chatLoop() {
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
         });
 
-        console.log(
-            "Type 'latest block' to fetch latest block or 'quit' to exit."
-        );
+        console.log("Type 'latest block' or  'block 840000'.");
 
         while (true) {
             const input = await rl.question("\n> ");
@@ -83,6 +97,14 @@ class MCPClient {
             if (input.toLowerCase() === "latest block") {
                 const output = await this.getLatestBlock();
                 console.log("\nLatest block:\n", output);
+            } else if (input.toLowerCase().startsWith("block")) {
+                const parts = input.split(" ");
+                let heightOrHash = "840000";
+                if (parts.length > 1 && parts[1].trim() !== "") {
+                    heightOrHash = parts[1].trim();
+                }
+                const output = await this.getBlockInfo(heightOrHash);
+                console.log("\nBlock info:\n", output);
             } else {
                 console.log("Unrecognized command. Try 'block' or 'quit'.");
             }

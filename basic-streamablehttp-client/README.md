@@ -2,6 +2,10 @@
 
 A basic MCP client that communicates over HTTP using an API key.
 
+## Prequisites
+
+-   Node 24
+
 ## Setup
 
 Install:
