@@ -35,7 +35,7 @@ npm run start
 ...
 
 Connected to MCP server at http://localhost:3000/mcp
-Type 'block' to fetch latest block or 'quit' to exit.
+Type 'latest block', 'block <height_or_hash>', 'list functions', or 'quit'.
 
-> block
+> list functions
 ```
