@@ -37,21 +37,18 @@ You will need 4 things:
 {
     "mcpServers": {
         "maestro-mcp-server": {
-            "command": "/ABSOLUTE/PATH/TO/node",
-            "args": ["/ABSOLUTE/PATH/TO/maestro-mcp-server/src/index.ts"],
-            "env": {
-                "MAESTRO_BASE_URL": "https://xbt-mainnet.gomaestro-api.org/v0",
-                "API_KEY_API_KEY": "<MAESTRO_API_KEY>"
-            }
-        },
-        "basic-streamablehttp-client": {
-            "command": "/ABSOLUTE/PATH/TO/node",
+            "command": "npx",
             "args": [
-                "/ABSOLUTE/PATH/TO/maestro-mcp-client/basic-streamablehttp-client/src/index.ts"
+                "-y",
+                "mcp-remote",
+                "http://localhost:3000/mcp",
+                "--header",
+                "Authorization:${AUTH_HEADER}",
+                "--transport",
+                "http-only"
             ],
             "env": {
-                "MAESTRO_MCP_SERVER": "<MAESTRO_MCP_SERVER_URL>",
-                "MAESTRO_API_KEY": "<MAESTRO_API_KEY>"
+                "AUTH_HEADER": "Bearer $MAESTRO_API_KEY"
             }
         }
     }
