@@ -4,4 +4,5 @@ Example MCP clients for interacting with the [Maestro MCP Server](https://github
 
 ## MCP Clients
 
--   [basic-streamablehttp-client](basic-streamablehttp-client)
+-   [basic-streamablehttp-client](./examples/basic-streamablehttp-client)
+-   [claude](./examples/claude)
