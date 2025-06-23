@@ -24,7 +24,7 @@ class MCPClient {
             this.transport = new StreamableHTTPClientTransport(url, {
                 requestInit: {
                     headers: {
-                        "api-key": MAESTRO_API_KEY,
+                        Authorization: `Bearer ${MAESTRO_API_KEY}`,
                     },
                 },
             });
@@ -55,9 +55,7 @@ class MCPClient {
         try {
             const result = await this.mcp.callTool({
                 name: "rpc_latest_block",
-                arguments: {
-                    "api-key": MAESTRO_API_KEY,
-                },
+                arguments: {},
             });
             return result.content as string;
         } catch (err) {
@@ -71,7 +69,6 @@ class MCPClient {
             const result = await this.mcp.callTool({
                 name: "rpc_block_info",
                 arguments: {
-                    "api-key": MAESTRO_API_KEY,
                     height_or_hash: height_or_hash,
                 },
             });
@@ -121,7 +118,7 @@ class MCPClient {
         });
 
         console.log(
-            "Type 'latest block', 'block <height_or_hash>', 'list functions', or 'quit'."
+            "Type 'latest block', 'block <height_or_hash>', 'list tool', or 'quit'."
         );
 
         while (true) {
@@ -139,12 +136,12 @@ class MCPClient {
                 }
                 const output = await this.getBlockInfo(heightOrHash);
                 console.log("\nBlock info:\n", output);
-            } else if (input.toLowerCase() === "list functions") {
+            } else if (input.toLowerCase() === "list tool") {
                 const functions = await this.listServerFunctions();
                 console.log("\nAvailable server functions:\n" + functions);
             } else {
                 console.log(
-                    "Unrecognized command. Try 'block', 'latest block', 'list functions', or 'quit'."
+                    "Unrecognized command. Try 'block', 'latest block', 'list tools', or 'quit'."
                 );
             }
         }
