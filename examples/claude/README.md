@@ -91,12 +91,12 @@ Now that the `claude_desktop_config.json` is set, restart Claude Desktop and beg
 2. Select `maestro-mcp-server`
    ![](https://github.com/user-attachments/assets/302b2535-8b1c-4cab-b3f6-e244a0ffddcc)
 
-3. View available MCP toolsAdd commentMore actions
+3. View available MCP tools
    ![](https://github.com/user-attachments/assets/91503920-6908-463b-b27f-614acf052ac5)
 
 4. Prompt Claude.
 
--   "Fetch the latest Bitcoin block"Add commentMore actions
+-   "Fetch the latest Bitcoin block"
 -   "Get the blockchain info for Bitcoin"
 
     ![](https://github.com/user-attachments/assets/5389404c-0c42-4e30-abba-80c3a618f9dd)
