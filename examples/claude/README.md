@@ -48,7 +48,7 @@ You will need 4 things:
                 "http-only"
             ],
             "env": {
-                "AUTH_HEADER": "Bearer $MAESTRO_API_KEY"
+                "AUTH_HEADER": "Bearer <MAESTRO_API_KEY>"
             }
         }
     }
