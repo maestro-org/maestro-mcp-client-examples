@@ -1,4 +1,4 @@
-# Maestro MCP with Claude Desktop
+# Maestro MCP with Cursor
 
 This client example demonstrates how to configure [Cursor](https://cursor.com/) to use [Maestro MCP](https://github.com/maestro-org/maestro-mcp-server).
 
