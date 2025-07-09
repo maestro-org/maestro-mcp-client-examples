@@ -29,7 +29,7 @@ This client example demonstrates how to configure [Cursor](https://cursor.com/) 
 
     ![](https://github.com/user-attachments/assets/f187a235-8af5-4367-996a-2e0a54a06c9d)
 
-4. Click 'Install`
+4. Click `Install`
 
 ## Usage
 
