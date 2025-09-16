@@ -5,9 +5,17 @@
     "moduleResolution": "Node",
     "lib": ["ES2020", "DOM"],
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "declaration": true,
+    "sourceMap": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "ts-node": {
+    "esm": true
+  }
 }

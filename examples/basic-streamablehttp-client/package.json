@@ -6,7 +6,8 @@
     "type": "module",
     "scripts": {
         "build": "tsc",
-        "start": "ts-node src/index.ts"
+        "start": "tsx src/index.ts",
+        "start:built": "node dist/index.js"
     },
     "keywords": [
         "mcp",
@@ -27,6 +28,7 @@
     "devDependencies": {
         "@types/node": "^20.19.0",
         "ts-node": "^10.9.2",
+        "tsx": "^4.20.5",
         "typescript": "^5.8.3"
     }
 }
